@@ -1,0 +1,91 @@
+select *from STUDENT;
+insert into student values('19970406', '김산수', '컴퓨터정보', '1', 'A', 'M',172,63);
+
+insert into student(stu_no,stu_name) VALUES('19971103', '김지성');
+
+insert into a_student
+select * from STUDENT; --??
+
+select *from A_ENROL;
+
+create table a_enrol as select * from enrol where STU_NO< 19971103;
+-- a_enrol이라는 이름의 table 생성, 폼은 이전에 입력한 3가지 항목만 들어오지만
+-- 내용은 없는 table 생성.
+create table aenrol as select * from enrol where STU_NO< 19971103;
+-- aenrol이라는 이름의 table 생성, 폼은 이전에 입력한 3가지 항목만 들어오지만
+-- 내용은 없는 table 생성.
+
+insert into a_enrol 
+select * from enrol 
+where stu_no like '2001%'; --오류?
+
+--< 데이터 입력,변경, 삭제 >
+select *from student;
+update student
+set STU_NAME='강하늘'
+where STU_no='20153075';
+
+select *from a_enrol;
+
+--학번이 20153075인 학생의 이름을 금나나로  변경하시오
+update student
+set stu_name='금나나'
+where stu_no=20153075;-- stu_no에는 ''를 넣으면 안된다.
+
+--금나나를 삭제하시오.
+delete from STUDENT
+where stu_no=20153075;
+
+-- 금나나를 다시 넗으시오.
+insert into student values(20153075,'금나나','기계공학', 4,'A', 'F', '170', '48');
+-- 최하단행에 추가
+
+-- 금나나 학생의 키를 검색하시오.
+select stu_height
+from student
+where stu_name='금나나';
+
+TCL(Transaction Control Language)
+: 반드시 한 덩어리로 이루어져야 한다!!!!
+
+-> 사용 : commit 확정 / rollback 잘못됐을때 회귀.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

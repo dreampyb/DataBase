@@ -1,0 +1,132 @@
+< 관계형 데이터 구조를 구성하는 용어 >
+Relation: 정보저장의 기본형태가 2차원구조의 테이블
+속성(Attribute): 테이블의 각열을 의미
+Domain: 속성이 가질 수 있는 값들의 집합
+Tuple: 테이블이 한 행을 구성하는 속성들의 집합
+ 
+* Oracle : 금융권 등에서 사용
+* MySQL : Open source , 
+* MariaDB : Oracle이 MySQL을 인수 후 개발자가 다시 개발한 프로그램.
+
+https://db-engines.com/en/system/MariaDB%3BMySQL%3BOracle
+
+http://hackersstudy.tistory.com/25
+
+# SQL(Structure Query Language) : 구조화 질의어 
+
+* 데이터 조작 언어
+- DML: Data Manipulation Language)
+-  CRUD (데이터 생성Create, 읽기Read, 갱신Update, 삭제Delete )
+
+< student 테이블 생성 >
+
+create table student(
+  stu_no char(9),
+  stu_name varchar2(12),
+  stu_dept varchar2(20),
+  stu_grade number(1),
+  stu_class char(1),
+  stu_gender char(1),
+  stu_height number(5,2), --정수 3자리 소수 2자리
+  stu_weight number(5,2),
+  constraint p_stu_no primary key(stu_no));
+: ( ) 안은 글자 수
+@ -- : SQL의 주석 표시
+@ p_값 : identuty의미
+@varchar2: 가변 데이터 타입 (oracle의 형태, 최대 12자까지)
+              테이블에서 데이터가 사용하는 공간만큼만 사용하도록 함.
+@ 변하지 않을 값은 : char로 보통 1글자
+@ 정수형같은 숫자 : number로
+
+# 테이블 구조 확인 : desc + table 이름.
+
+< 검색 명령어 >
+
+1. select : ( [] 생략가능.)
+   from + table 이름 +; ( ;를 마지막에 쳐줘야 한 문장이 끝남 )
+  
+2. -- : 주석
+
+3. 중복되는 행 제거 방법: 명령어 뒤에 + distinct 
+예) SELECT distinct stu_dept from STUDENT;
+
+4. " " 쌍따옴표는 오직 별칭에만 사용.
+예) "미터" 
+
+5. '' 홑따옴표는 문자열표시.
+=> 데이타 표시이므로 대소문자 구분한다.
+
+<문제>
+-- 학생들의 명단을 출력하시오(단, 출력결과는 다음과 같은 형태로 출력되어야 합니다.
+-- EX> 기계학과에 재학중인 c반 옥한빛입니다.
+SELECT stu_dept || '학과에 재학중인 ' || stu_class||'반 ' || stu_name || '입니다'from student;
+
+6. WHERE 그 해당값 검색.
+EX> SELECT * FROM STUDENT
+where stu_dept='컴퓨터정보';
+
+7. or (각각 표시, 공통된 것이 아님)
+예> where STU_GRADE >=2 or STU_GENDER='m';
+
+8. DB의 원명은 RDB(Relation Data Base)
+
+
+@  % : 0개 이상의 문자를 의미, 
+     EX) 55, AB5, 5 -> 글자수 중요
+     _  : 1개의 문자를 의미
+	ex) 5, a
+
+9. Null 값만 보고 싶다.
+SELECt * from STUDENT
+where STU_HEIGHT =null; -- null의 문자를 찾는다는 것임으로 안됨
+
+SELECt * from STUDENT
+where STU_HEIGHT is null;  -- 그러므로 반드시 is를 사용
+
+SELECt * from STUDENT
+where STU_HEIGHT is not null;  -- != 인 경우
+
+10. in 사용법
+SELECt * from STUDENT
+where STU_DEPT in ('컴퓨터정보', '기계');  -- 이때는 %을 못씀
+
+11. order by 사용시 WHERE는 order by앞에 사용.
+
+-- 학생 정보중 학번, 이름, 학과, 몸무게 를 출력
+
+SELECt STU_NO, STU_NAME, STU_DEPT, STU_WEIGHT as "몸무게"
+from STUDENT                -- 별칭지정도 됨.
+ORDER BY 4; -- SELECT중에 4번째를 지정하여 정렬.
+
+SELECt STU_NO, STU_NAME, STU_DEPT, STU_WEIGHT as "몸무게"
+from STUDENT                -- 별칭지정도 됨.
+ORDER BY STU_HEIGHT; -- 정렬만 되고 출력은 안됨
+
+
+12. ROUND(인수1, 인수2) 
+:인수1의 값을 인수2의 자리로 반올림하여 반환 
+
+
+15. -- 그룹별로 묶기
+예) SELECT STU_DEPT , AVG(STU_WEIGHT) -- 이렇게도 가능.
+FROM STUDENT
+	GROUP BY STU_DEPT;
+
+16. TABLE 이름은 숫자로 시작되면 안됨.
+    특수기호는 중간에 넣을 수 있으나 숫자로 시작안됨.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

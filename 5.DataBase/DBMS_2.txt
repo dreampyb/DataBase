@@ -1,0 +1,47 @@
+Join   -   Cross - 다 곱하기
+	Equi  - 공통된 부분만 
+           		from 회원 테이블, 주문테이블
+		where  회원테이블.아이디
+
+	Non-Equi Join
+-- 사원급여의 등급을 사원번호, 사원이름, 급여,등급이 출력되도록 검색하시오.
+select empno, ename, sal, grade
+from emp, salgrade
+where sal between losal and hisal;
+
+5가지 join 
+[1.cross join]
+ex) select A.name, id
+from Across join B또는 from A,B
+
+[2. equi join ]
+from A,B
+where A.anme=B.name -- A.name과 B.name의 같은 것만 남겨라
+또는
+from  A join using (name);
+또는 
+from A natural join B;
+또는 
+from A join B on A.name=B.name;
+
+[3.non-equi join]  -- 부등호로 처리
+from A,B
+where A.name > B.name --양쪽name중 큰쪽만 남겨둬라.
+
+
+[4.self join] 
+from A+별칭1 , A+별칭2 -- 별칭에 ""를 사용안함.
+where 별칭1.id=별칭2.id;
+
+[5.outer join]
+from A right outer join B on A.name=B.name;
+	left outer join
+	full oute join
+
+[6. 부질의 S
+select id in (a,b)
+->        =,>,< any
+												 
+
+
+
