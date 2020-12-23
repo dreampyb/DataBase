@@ -1,0 +1,42 @@
+1. 하루 1M 증가 일년은
+
+2. sudo apt-get install package명 
+  or sudo apt install package명
+
+3. ROOT계정 접속 
+: mysql -u root -p
+
+4. 설치 후 재시작시
+: sudo service mysql restart
+
+5. Client program
+: Maridb - heidi sql
+: MySQL - Mysql workbench
+: Orange
+: Tord
+
+6. 계정 생성 
+ 1) 내부 접속용 
+create user 'RemoteUser'@'localhost' identified by 'localPassword';
+
+ 2) 모든IP 외부접속용 
+create user 'RemoteUser'@'%' identified by 'remotePassword';
+
+ 3) 특정IP 외부접속용 
+create user 'RemoteUser'@'192.168.2.%' identified by 'remotePassword';
+
+7. 권한 설정 
+1) 내부 접속용
+grant all privileges on testDB.* to 'RemoteUser'@'localhost';
+
+2) 모든IP 외부접속용
+    grant all privileges on testDB.* to 'RemotUser'@'%';
+:                                      schema to '계정명'@'%'
+3) 특정IP 외부접속용
+    grant all privileges on testDB.* to 'RemoteUser'@'192.168.2.%';
+
+8. Data Dictionary에서 유저 정보 보기
+mysql: select user from user;
+
+9. Database 의 목록보기
+: show databases; 

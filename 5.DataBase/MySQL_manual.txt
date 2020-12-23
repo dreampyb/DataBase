@@ -1,0 +1,26 @@
+PK: Prinmary Key
+NN : NotNull
+UQ : Unique Index
+Truncate Table : table내용만 delete한다.
+Key 는 유일해야 한다,(Unique)
+1) 후보키는 테이블에서 각 튜플을 유일하게 식별할 수 있는 속성or속성의 집합
+2) 기본키 :Primary Key
+3) 대체키
+4) 외래키 :
+    # 외래키는 참조 테이블의 기본키와 같아야 한다.
+* 외래키가 unique일 경우 Null이 올 수 있다.
+
+(3) 무결성(integrity) 의 제약 조건
+ 1) 개체 무결성  -  ######
+- 기본키는 Null이 올수 없다
+- 중복될 수 없다.
+
+ 2) 참조 무결성 - "외래키에 대한 "
+- 외래키는 Null이 올 수 없다.
+- 테이블의 기본키와 같아야 한다.
+
+ 3) 도메인 무결성
+
+ 4) Unique 무결성
+
+ 5) NULL 무결성
